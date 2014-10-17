@@ -1,0 +1,25 @@
+#!/bin/sh
+
+rm language.o
+rm language_eval.o
+rm language.lex.c
+rm language.lex.o
+rm language.h
+rm language.y.c
+rm language.y.o
+rm language
+rm language.output
+
+bison -d language.y
+mv language.tab.h language.h
+mv language.tab.c language.y.c
+flex language.l
+mv lex.yy.c language.lex.c
+gcc -c language_tree.c -o language_tree.o
+gcc -c language_eval.c -o language_eval.o
+gcc -c language.lex.c -o language.lex.o
+gcc -c language.y.c -o language.y.o
+gcc -o language language.lex.o language.y.o language_tree.o language_eval.o
+clear
+#supprimer "-f in.txt pour lancer en mode ligne de commande"
+./language -f in.txt

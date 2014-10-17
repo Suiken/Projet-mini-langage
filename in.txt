@@ -1,0 +1,9 @@
+reel a;
+a = 1;
+afficher(a);
+si (a == 0)
+afficher(3);
+finsi
+si (a == 1)
+afficher(2);
+finsi
